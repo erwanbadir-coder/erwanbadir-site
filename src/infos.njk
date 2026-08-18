@@ -1,0 +1,34 @@
+---
+layout: base.njk
+title: Infos
+description: "Erwan Badir, designer graphique et directeur artistique à Marseille : identités visuelles, affiches et systèmes graphiques pour institutions culturelles, studios et marques. Contact et clients."
+bodyClass: page-infos
+permalink: /infos/
+---
+<div class="infos">
+
+  <p class="infos__intro">
+    Erwan Badir est designer graphique et directeur artistique basé à
+    <span class="hovermoji" data-emoji="☀️">Marseille</span>.
+    Il accompagne <span class="hovermoji" data-emoji="🏛️">institutions culturelles</span>,
+    studios et marques dans la création d'<span class="hovermoji" data-emoji="🎨">identités visuelles</span>,
+    d'<span class="hovermoji" data-emoji="🖼️">affiches</span>,
+    d'<span class="hovermoji" data-emoji="📚">éditions</span>
+    et de <span class="hovermoji" data-emoji="🧩">systèmes graphiques</span>.
+  </p>
+
+  <h2 class="infos__clients-title">Clients</h2>
+
+  <p class="infos__clients">
+    {% for c in infos.clients %}<span class="infos__client">{{ c.name }}{% if c.place %} — <em>{{ c.place }}</em>{% endif %}</span>{% if not loop.last %} <span class="infos__sep">│</span> {% endif %}{% endfor %}
+  </p>
+
+  <footer class="infos__footer">
+    <a class="hovermoji" data-emoji="✉️" href="mailto:{{ infos.email }}">{{ infos.email }}</a>
+    <a class="hovermoji" data-emoji="📷" href="{{ infos.instagram }}" target="_blank" rel="noopener">Instagram</a>
+    <a class="hovermoji" data-emoji="🚀" href="{{ infos.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="hovermoji" data-emoji="🖌️" href="{{ infos.behance }}" target="_blank" rel="noopener">Behance</a>
+    <a class="hovermoji infos__footer-legal" data-emoji="⚖️" href="/mentions-legales/">Mentions légales</a>
+  </footer>
+
+</div>

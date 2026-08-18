@@ -1,0 +1,35 @@
+<header class="site-header">
+  <a class="site-header__logo" href="/" aria-label="{{ site.name }} — accueil">
+    {% if site.logo %}
+      <span class="site-header__logomark"
+            style="-webkit-mask-image:url('{{ site.logo }}');mask-image:url('{{ site.logo }}')"
+            role="img" aria-label="{{ site.name }}"></span>
+    {% else %}
+      {{ site.name }}
+    {% endif %}
+  </a>
+  <span class="site-header__tagline">{{ site.tagline }}</span>
+
+  {# Actions visibles sur desktop #}
+  <a class="site-header__infos" href="/infos/">Infos</a>
+  <button class="site-header__theme" type="button" aria-label="Basculer mode clair / sombre">☀️</button>
+
+  {# Burger + menu déroulant (mobile) #}
+  <button class="site-header__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  <nav class="site-header__menu">
+    <button class="site-header__menu-close" type="button" aria-label="Fermer le menu">✕</button>
+    <a class="site-header__menu-infos" href="/infos/">Infos</a>
+    <a href="/mentions-legales/">Mentions légales</a>
+    {% if bodyClass == "page-project" %}
+      {%- set nextP = collections.projects | getNextCollectionItem -%}
+      {%- set prevP = collections.projects | getPreviousCollectionItem -%}
+      {% if prevP %}<a href="{{ prevP.url }}">← Précédent</a>{% endif %}
+      {% if nextP %}<a href="{{ nextP.url }}">Suivant →</a>{% endif %}
+      <a href="/">Tous les projets</a>
+      <a href="{{ infos.instagram }}" target="_blank" rel="noopener">Instagram</a>
+      <a href="{{ infos.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="site-header__menu-copy">© {{ site.name }}</span>
+    {% endif %}
+    <button class="site-header__theme" type="button" aria-label="Basculer mode clair / sombre">☀️</button>
+  </nav>
+</header>

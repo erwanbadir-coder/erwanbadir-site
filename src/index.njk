@@ -1,0 +1,26 @@
+---
+layout: base.njk
+bodyClass: page-home
+---
+<div class="index" id="index">
+  <div class="index__stage">
+    <div class="index__col index__col--left">
+      {% for project in collections.projects %}
+        <a class="cell" href="/projets/{{ project.fileSlug }}/">
+          <img class="cell__img" src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
+          {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+    <div class="index__col index__col--right">
+      {% for project in collections.projects | reverse %}
+        <a class="cell" href="/projets/{{ project.fileSlug }}/">
+          <img class="cell__img" src="{{ project.data.cover2 or project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
+          {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if design.scrollHint %}<div class="scroll-hint" aria-hidden="true"><span>Glissez</span><span class="scroll-hint__arw">→</span></div>{% endif %}
+</div>

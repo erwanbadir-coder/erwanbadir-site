@@ -1,0 +1,56 @@
+---
+layout: base.njk
+bodyClass: page-project
+---
+{%- set nextProject = collections.projects | getNextCollectionItem -%}
+{%- set prevProject = collections.projects | getPreviousCollectionItem -%}
+<article class="project">
+  <div class="project__main">
+
+    <aside class="project__aside">
+      <div class="project__info">
+        <h1 class="project__cat">Catégorie | <b>{{ category }}</b></h1>
+        <p class="project__name"><em>{{ title }}</em></p>
+        {% if client %}<p class="project__client"><strong>Client : {{ client }}</strong></p>{% endif %}
+        {% if year %}<p class="project__year">{{ year }}</p>{% endif %}
+
+        {% if developed %}
+          <div class="project__desc">
+            {% for p in context | paragraphs %}<p>{{ p }}</p>{% endfor %}
+            {% for p in approach | paragraphs %}<p>{{ p }}</p>{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <button class="project__totop" type="button" aria-label="Revenir en haut de page">↑</button>
+
+      <div class="project__foot">
+        <nav class="project__nav">
+          <a href="{{ prevProject.url if prevProject else '#' }}"{% if not prevProject %} class="is-disabled"{% endif %}>← Précédent</a>
+          <a href="/">Tous les projets</a>
+          <a href="{{ nextProject.url if nextProject else '#' }}"{% if not nextProject %} class="is-disabled"{% endif %}>Suivant →</a>
+        </nav>
+        <p class="project__social">
+          <a href="{{ infos.instagram }}" target="_blank" rel="noopener">Instagram</a>
+          <a href="{{ infos.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+          <span>© {{ site.name }}</span>
+        </p>
+      </div>
+    </aside>
+
+    {% if design.scrollHint %}<div class="scroll-hint scroll-hint--proj" aria-hidden="true"><span>Glissez pour les images</span><span class="scroll-hint__arw">→</span></div>{% endif %}
+
+    <div class="project__gallery">
+      {% for item in images %}
+        <figure class="project__figure{% if item.wide %} wide{% endif %}">
+          {% if item.video %}
+            <video class="project__video" src="{{ item.video }}" autoplay muted loop playsinline preload="metadata" title="Cliquer pour mettre en pause / lire"{% if item.image %} poster="{{ item.image }}"{% endif %}></video>
+          {% else %}
+            <img src="{{ item.image }}" alt="{{ item.alt or title }}" loading="lazy">
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+
+  </div>
+</article>

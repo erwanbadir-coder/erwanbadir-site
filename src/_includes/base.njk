@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr"{% if design.reduceMotion %} class="rm"{% endif %}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    /* applique le thème enregistré avant le rendu (évite le clignotement) */
+    (function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+  </script>
+  {#- ---- SEO : titre + description calculés par page ---- -#}
+  {%- set pageTitle = (title + " — " + site.name) if title else (site.name + " — " + site.tagline) -%}
+  {%- set pageDesc = description -%}
+  {%- if not pageDesc and context %}{% set pageDesc = context %}{% endif -%}
+  {%- if not pageDesc and approach %}{% set pageDesc = approach %}{% endif -%}
+  {%- if not pageDesc and category %}{% set pageDesc = title + " — " + category + (" pour " + client if client) + ", par " + site.name + "." %}{% endif -%}
+  {%- if not pageDesc %}{% set pageDesc = site.name + ", " + site.tagline + ". " + infos.intro %}{% endif -%}
+  {%- set pageDesc = pageDesc | metaDesc -%}
+  {%- set canonical = site.url + page.url -%}
+  {%- set ogImage = (cover or "/images/og-default.jpg") | absUrl(site.url) -%}
+
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDesc }}">
+  <meta name="author" content="{{ site.name }}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="{{ design.paper }}">
+  <link rel="canonical" href="{{ canonical }}">
+  <link rel="icon" href="{{ site.logo }}" type="image/svg+xml">
+
+  {#- ---- Partage sur les réseaux (Open Graph + Twitter) ---- -#}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDesc }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ ogImage }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDesc }}">
+  <meta name="twitter:image" content="{{ ogImage }}">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    /* Réglages design pilotés depuis l'admin (Pages → Réglages design) */
+    :root{
+      --logo-w:{{ design.logoWidth }}px;
+      --paper:{{ design.paper }};
+      --ink:{{ design.ink }};
+      --proj-gap:{{ design.projGap }}px;
+    }
+    :root[data-theme="dark"]{
+      --paper:{{ design.paperDark }};
+      --ink:{{ design.inkDark }};
+    }
+  </style>
+</head>
+<body class="{{ bodyClass }}">
+
+  {% include "header.njk" %}
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  {% if design.cursor %}<div class="cursor" aria-hidden="true">🦄</div>{% endif %}
+
+  <script src="/assets/js/cursor.js" defer></script>
+  <script src="/assets/js/scroll.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/header-adapt.js" defer></script>
+  <script src="/assets/js/menu.js" defer></script>
+
+  <!-- Netlify Identity : traite les invitations et redirige vers l'admin -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

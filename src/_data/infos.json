@@ -1,0 +1,25 @@
+{
+  "intro": "Erwan Badir est designer graphique et directeur artistique basé à Marseille. Il accompagne institutions culturelles, studios et marques dans la création d'identités visuelles, d'affiches et de systèmes graphiques.",
+  "clients": [
+    { "name": "villa Noailles", "place": "Hyères" },
+    { "name": "Campus art Méditerranée", "place": "Marseille" },
+    { "name": "Conservatoire Pierre Barbizet", "place": "Marseille" },
+    { "name": "IFAMM", "place": "Marseille" },
+    { "name": "Démos Marseille", "place": "Marseille" },
+    { "name": "Nade", "place": "" },
+    { "name": "Nu2", "place": "Île du Levant" },
+    { "name": "Studio Candelon", "place": "Brignoles" },
+    { "name": "Société du Canal de Provence", "place": "Le Tholonet" },
+    { "name": "Aequographe", "place": "Marseille" },
+    { "name": "Verve", "place": "Marseille" },
+    { "name": "Dababo", "place": "Marseille" },
+    { "name": "WMag", "place": "Aix-en-Provence" },
+    { "name": "Beaux-arts de Marseille", "place": "Marseille" }
+  ],
+  "email": "erwanbadir@hotmail.fr",
+  "phone": "06 73 14 59 69",
+  "instagram": "https://instagram.com/",
+  "linkedin": "https://linkedin.com/",
+  "behance": "https://behance.net/",
+  "legal": "L'ensemble de ce site relève des législations françaises et internationales sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents iconographiques et photographiques. Ils sont la propriété d'Erwan Badir. Conception et développement : Erwan Badir."
+}

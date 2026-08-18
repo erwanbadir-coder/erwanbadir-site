@@ -1,0 +1,13 @@
+{
+  "name": "erwanbadir-site",
+  "version": "1.0.0",
+  "description": "Portfolio Erwan Badir — Design graphique & Direction artistique",
+  "scripts": {
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

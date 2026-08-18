@@ -1,0 +1,12 @@
+{
+  "logoWidth": 150,
+  "paper": "#ffffff",
+  "ink": "#111111",
+  "paperDark": "#141414",
+  "inkDark": "#f2f2f2",
+  "projGap": 24,
+  "cursor": true,
+  "scrollHint": true,
+  "projectNames": false,
+  "reduceMotion": true
+}
