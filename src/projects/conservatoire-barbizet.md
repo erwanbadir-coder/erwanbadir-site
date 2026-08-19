@@ -6,7 +6,7 @@ client: Conservatoire Pierre Barbizet de Marseille
 year: "2026"
 cover: /images/cpbm-livret-cover.webp
 cover2: /images/cpbm-cover2.webp
-colorSide: left
+colorSide: right
 developed: false
 context: L'identité visuelle du Conservatoire Pierre Barbizet de Marseille
   s'ancre dans une approche à la fois contextuelle, poétique et plurielle. Elle
