@@ -25,7 +25,18 @@ collections:
       - { name: "client", label: "Client", widget: "string", required: false }
       - { name: "year", label: "Année", widget: "string", required: false }
       - { name: "cover", label: "Image d'appel GAUCHE (accueil)", widget: "image", required: false, hint: "Image couleur : affichée en N&B, passe en couleur au survol." }
-      - { name: "cover2", label: "Image d'appel DROITE (accueil)", widget: "image", required: false, hint: "2e image d'appel du projet. Vide = reprend l'image de gauche." }
+      - { name: "cover2", label: "Image d'appel DROITE (accueil)", widget: "image", required: false, hint: "2e image d'appel. Vide = reprend l'image de gauche." }
+      - name: "colorSide"
+        label: "Image en couleur sur l'accueil"
+        widget: "select"
+        default: "none"
+        required: false
+        hint: "Choisis quelle image d'appel reste en couleur. L'autre reste en N&B (couleur au survol)."
+        options:
+          - { label: "Aucune (N&B, couleur au survol)", value: "none" }
+          - { label: "Gauche en couleur", value: "left" }
+          - { label: "Droite en couleur", value: "right" }
+          - { label: "Les deux en couleur", value: "both" }
       - { name: "developed", label: "Page développée (avec texte) ?", widget: "boolean", default: false, hint: "Désactivé = page simple (images seules)." }
       - { name: "context", label: "Texte — Contexte", widget: "text", required: false }
       - { name: "approach", label: "Texte — Parti pris", widget: "text", required: false }
@@ -38,7 +49,7 @@ collections:
           - { name: "image", label: "Image", widget: "image", required: false }
           - { name: "video", label: "Vidéo (MP4) — à la place de l'image", widget: "file", required: false, hint: "Renseigne SOIT une image, SOIT une vidéo." }
           - { name: "alt", label: "Description (accessibilité)", widget: "string", required: false }
-          - { name: "wide", label: "Pleine largeur (horizontale / vidéo) ?", widget: "boolean", default: false, hint: "Coché = occupe toute la largeur. Décoché = vertical, placé par deux." }
+          - { name: "wide", label: "Pleine largeur (horizontale / vidéo) ?", widget: "boolean", default: false, hint: "Coché = pleine largeur. Décoché = vertical, par deux." }
 
   - name: "settings"
     label: "Pages"
@@ -63,8 +74,8 @@ collections:
           - { name: "projGap", label: "Marge entre les images des projets (px)", widget: "number", value_type: "int", default: 24, min: 0, max: 80 }
           - { name: "cursor", label: "Curseur licorne", widget: "boolean", default: true }
           - { name: "scrollHint", label: "Indice de scroll (mobile)", widget: "boolean", default: true }
-          - { name: "projectNames", label: "Afficher le nom des projets sur l'accueil", widget: "boolean", default: false, hint: "Au survol sur ordinateur, visible en petit sur mobile." }
-          - { name: "reduceMotion", label: "Respecter « animations réduites » du système", widget: "boolean", default: true, hint: "Adoucit le double-scroll pour les personnes qui l'ont activé." }
+          - { name: "projectNames", label: "Afficher le nom des projets sur l'accueil", widget: "boolean", default: false }
+          - { name: "reduceMotion", label: "Respecter « animations réduites » du système", widget: "boolean", default: true }
       - name: "infos"
         label: "Page Infos"
         file: "src/_data/infos.json"
