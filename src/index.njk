@@ -6,7 +6,7 @@ bodyClass: page-home
   <div class="index__stage">
     <div class="index__col index__col--left">
       {% for project in collections.projects %}
-        <a class="cell{% if project.data.colorSide == 'left' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/">
+        <a class="cell{% if project.data.colorSide == 'left' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/" data-cursor="{{ project.data.cursorEmoji or '🦄' }}">
           <img class="cell__img" src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
           {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
         </a>
@@ -14,7 +14,7 @@ bodyClass: page-home
     </div>
     <div class="index__col index__col--right">
       {% for project in collections.projects | reverse %}
-        <a class="cell{% if project.data.colorSide == 'right' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/">
+        <a class="cell{% if project.data.colorSide == 'right' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/" data-cursor="{{ project.data.cursorEmoji or '🦄' }}">
           <img class="cell__img" src="{{ project.data.cover2 or project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
           {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
         </a>

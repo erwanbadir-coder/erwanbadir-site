@@ -18,9 +18,14 @@
   }
   loop();
 
-  // Affiche la licorne uniquement au-dessus des images de projet
+  // Affiche le curseur au-dessus des images de projet, et prend l'emoji
+  // défini pour ce projet (data-cursor), sinon la licorne par défaut.
+  const DEFAULT = "🦄";
   document.querySelectorAll(".cell").forEach((cell) => {
-    cell.addEventListener("mouseenter", () => document.body.classList.add("cursor-active"));
+    cell.addEventListener("mouseenter", () => {
+      cursor.textContent = cell.dataset.cursor || DEFAULT;
+      document.body.classList.add("cursor-active");
+    });
     cell.addEventListener("mouseleave", () => document.body.classList.remove("cursor-active"));
   });
 })();

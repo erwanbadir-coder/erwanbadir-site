@@ -1,9 +1,7 @@
-// Reproduit le mode de fusion "difference" avec un texte BLANC de base :
-//   couleur affichée = différence(blanc, fond) = inverse du fond.
+// En-tête "caméléon" : le texte se met en NOIR ou en BLANC selon le fond,
+// en choisissant à chaque instant la couleur la plus lisible.
 // Calculé en JS pour fonctionner partout (Safari inclus, contrairement à
 // mix-blend-mode qui échoue à travers la section épinglée du double-scroll).
-// Tient compte du survol : sur une image repassée en couleur, l'inversion
-// redevient colorée (comme le vrai mode différence sur une image couleur).
 (function () {
   const segs = Array.from(
     document.querySelectorAll(
@@ -54,15 +52,11 @@
     segs.forEach((seg) => {
       const img = imgUnder(seg);
       if (!img || !img._avg) { seg.style.color = ""; return; } // hors accueil : couleur CSS
-      const cell = img.closest(".cell");
-      let r, g, b;
-      if (cell && cell === hovered) {           // image affichée en COULEUR
-        r = img._avg.r; g = img._avg.g; b = img._avg.b;
-      } else {                                  // image affichée en N&B
-        r = g = b = img._avg.grey;
-      }
-      seg.style.color =
-        "rgb(" + Math.round(255 - r) + "," + Math.round(255 - g) + "," + Math.round(255 - b) + ")";
+      // Noir & blanc adaptatif : on met le texte en pur noir ou pur blanc,
+      // selon celui qui est le plus lisible sur le fond (lisibilité maximale).
+      // La luminance est identique que l'image soit affichée en N&B ou en couleur.
+      const lum = img._avg.grey;                // 0 = fond noir, 255 = fond blanc
+      seg.style.color = lum < 145 ? "#ffffff" : "#111111";
     });
   }
   function onScroll() { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; adapt(); }); }

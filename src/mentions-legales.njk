@@ -7,5 +7,14 @@ permalink: /mentions-legales/
 ---
 <div class="infos">
   <h1 class="infos__h">Mentions légales</h1>
-  <p class="mentions__body">{{ infos.legal }}</p>
+  <div class="legal">
+    {% for s in infos.legalSections %}
+    <details class="legal-item">
+      <summary class="legal-item__title" data-emoji="{{ s.emoji }}">{{ s.title }}</summary>
+      <div class="legal-item__body">
+        {% for para in s.body | paragraphs %}<p>{{ para }}</p>{% endfor %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
 </div>

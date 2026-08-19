@@ -21,5 +21,26 @@
   "instagram": "https://instagram.com/",
   "linkedin": "https://linkedin.com/",
   "behance": "https://behance.net/",
-  "legal": "L'ensemble de ce site relève des législations françaises et internationales sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents iconographiques et photographiques. Ils sont la propriété d'Erwan Badir. Conception et développement : Erwan Badir."
+  "legalSections": [
+    {
+      "title": "Éditeur du site",
+      "emoji": "🪪",
+      "body": "Le présent site est édité par Erwan Badir, entrepreneur individuel sous le régime de la micro-entreprise. Adresse : 228 boulevard National, 13003 Marseille, France. Contact : erwanbadir@hotmail.fr. SIRET : [à compléter — ton numéro à 14 chiffres]. TVA non applicable, article 293 B du Code général des impôts. Directeur de la publication : Erwan Badir."
+    },
+    {
+      "title": "Hébergeur",
+      "emoji": "🌐",
+      "body": "Le site est hébergé par Netlify, Inc., 44 Montgomery Street, Suite 300, San Francisco, CA 94104, États-Unis — www.netlify.com. Le nom de domaine est géré par Gandi SAS, 63-65 boulevard Masséna, 75013 Paris."
+    },
+    {
+      "title": "Propriété intellectuelle",
+      "emoji": "⚖️",
+      "body": "L'ensemble de ce site relève des législations françaises et internationales sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents iconographiques et photographiques, propriété d'Erwan Badir. Conception et développement : Erwan Badir."
+    },
+    {
+      "title": "Données personnelles",
+      "emoji": "🔒",
+      "body": "Ce site n'utilise aucun cookie de suivi et ne collecte aucune donnée de manière automatisée. Les seules données traitées sont celles que vous transmettez volontairement en écrivant à erwanbadir@hotmail.fr. Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données à cette même adresse. Vous pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+    }
+  ]
 }

@@ -1,15 +1,19 @@
+# local_backend permet d'utiliser l'admin en local (via `npx decap-server`).
+# En ligne (Netlify), c'est git-gateway qui prend le relais automatiquement.
 local_backend: true
 
 backend:
   name: git-gateway
   branch: main
 
+# Éditions enregistrées comme fichiers dans le dépôt (aucune base de données).
 media_folder: "src/images"
 public_folder: "/images"
 
 locale: "fr"
 
 collections:
+  # ---------------- PROJETS ----------------
   - name: "projects"
     label: "Projets"
     label_singular: "Projet"
@@ -25,18 +29,19 @@ collections:
       - { name: "client", label: "Client", widget: "string", required: false }
       - { name: "year", label: "Année", widget: "string", required: false }
       - { name: "cover", label: "Image d'appel GAUCHE (accueil)", widget: "image", required: false, hint: "Image couleur : affichée en N&B, passe en couleur au survol." }
-      - { name: "cover2", label: "Image d'appel DROITE (accueil)", widget: "image", required: false, hint: "2e image d'appel. Vide = reprend l'image de gauche." }
+      - { name: "cover2", label: "Image d'appel DROITE (accueil)", widget: "image", required: false, hint: "2e image d'appel du projet (colonne de droite). Vide = reprend l'image de gauche." }
       - name: "colorSide"
         label: "Image en couleur sur l'accueil"
         widget: "select"
         default: "none"
         required: false
-        hint: "Choisis quelle image d'appel reste en couleur. L'autre reste en N&B (couleur au survol)."
+        hint: "Choisis quelle image d'appel reste en couleur. L'autre reste en N&B (et passe en couleur au survol)."
         options:
           - { label: "Aucune (N&B, couleur au survol)", value: "none" }
           - { label: "Gauche en couleur", value: "left" }
           - { label: "Droite en couleur", value: "right" }
           - { label: "Les deux en couleur", value: "both" }
+      - { name: "cursorEmoji", label: "Curseur sur l'accueil (emoji)", widget: "string", required: false, default: "🦄", hint: "Emoji du curseur au survol de ce projet sur l'accueil. Vide = licorne 🦄." }
       - { name: "developed", label: "Page développée (avec texte) ?", widget: "boolean", default: false, hint: "Désactivé = page simple (images seules)." }
       - { name: "context", label: "Texte — Contexte", widget: "text", required: false }
       - { name: "approach", label: "Texte — Parti pris", widget: "text", required: false }
@@ -47,10 +52,11 @@ collections:
         summary: "{{fields.alt}}"
         fields:
           - { name: "image", label: "Image", widget: "image", required: false }
-          - { name: "video", label: "Vidéo (MP4) — à la place de l'image", widget: "file", required: false, hint: "Renseigne SOIT une image, SOIT une vidéo." }
+          - { name: "video", label: "Vidéo (MP4) — à la place de l'image", widget: "file", required: false, hint: "Renseigne SOIT une image, SOIT une vidéo. La vidéo joue en boucle, sans son. L'image peut servir de vignette (poster) à la vidéo." }
           - { name: "alt", label: "Description (accessibilité)", widget: "string", required: false }
-          - { name: "wide", label: "Pleine largeur (horizontale / vidéo) ?", widget: "boolean", default: false, hint: "Coché = pleine largeur. Décoché = vertical, par deux." }
+          - { name: "wide", label: "Pleine largeur (horizontale / vidéo) ?", widget: "boolean", default: false, hint: "Coché = occupe toute la largeur. Décoché = vertical, placé par deux." }
 
+  # ---------------- PAGE INFOS ----------------
   - name: "settings"
     label: "Pages"
     files:
@@ -61,7 +67,7 @@ collections:
           - { name: "name", label: "Nom", widget: "string" }
           - { name: "tagline", label: "Sous-titre (centre de l'en-tête)", widget: "string" }
           - { name: "url", label: "Adresse du site", widget: "string" }
-          - { name: "logo", label: "Logo (SVG)", widget: "image", required: false, hint: "Laisse vide pour afficher le nom en texte." }
+          - { name: "logo", label: "Logo (SVG)", widget: "image", required: false, hint: "Logo d'une seule couleur de préférence. Laisse vide pour afficher le nom en texte." }
       - name: "design"
         label: "Réglages design"
         file: "src/_data/design.json"
@@ -74,8 +80,8 @@ collections:
           - { name: "projGap", label: "Marge entre les images des projets (px)", widget: "number", value_type: "int", default: 24, min: 0, max: 80 }
           - { name: "cursor", label: "Curseur licorne", widget: "boolean", default: true }
           - { name: "scrollHint", label: "Indice de scroll (mobile)", widget: "boolean", default: true }
-          - { name: "projectNames", label: "Afficher le nom des projets sur l'accueil", widget: "boolean", default: false }
-          - { name: "reduceMotion", label: "Respecter « animations réduites » du système", widget: "boolean", default: true }
+          - { name: "projectNames", label: "Afficher le nom des projets sur l'accueil", widget: "boolean", default: false, hint: "Au survol sur ordinateur, visible en petit sur mobile." }
+          - { name: "reduceMotion", label: "Respecter « animations réduites » du système", widget: "boolean", default: true, hint: "Adoucit le double-scroll et coupe les indices animés pour les personnes qui l'ont activé sur leur appareil." }
       - name: "infos"
         label: "Page Infos"
         file: "src/_data/infos.json"
@@ -84,7 +90,6 @@ collections:
           - name: "clients"
             label: "Clients"
             widget: "list"
-            required: false
             summary: "{{fields.name}}"
             fields:
               - { name: "name", label: "Nom", widget: "string" }
@@ -94,4 +99,12 @@ collections:
           - { name: "instagram", label: "Lien Instagram", widget: "string", required: false }
           - { name: "linkedin", label: "Lien LinkedIn", widget: "string", required: false }
           - { name: "behance", label: "Lien Behance", widget: "string", required: false }
-          - { name: "legal", label: "Mentions légales", widget: "text" }
+          - name: "legalSections"
+            label: "Mentions légales (sections dépliables)"
+            widget: "list"
+            required: false
+            summary: "{{fields.title}}"
+            fields:
+              - { name: "title", label: "Titre de la section", widget: "string" }
+              - { name: "emoji", label: "Emoji (apparaît au survol)", widget: "string", required: false }
+              - { name: "body", label: "Texte de la section", widget: "text" }
