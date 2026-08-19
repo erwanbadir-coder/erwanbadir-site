@@ -54,7 +54,7 @@
     }
   </style>
 </head>
-<body class="{{ bodyClass }}">
+<body class="{{ bodyClass }}{% if design.cursor %} has-cursor{% endif %}">
 
   {% include "header.njk" %}
 

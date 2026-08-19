@@ -112,7 +112,7 @@ img{display:block;max-width:100%}
 .cursor{
   position:fixed;top:0;left:0;
   font-family:var(--emoji-font);
-  font-size:30px;line-height:1;
+  font-size:40px;line-height:1;
   transform:translate(-50%,-50%);
   pointer-events:none;
   z-index:200;
@@ -120,7 +120,12 @@ img{display:block;max-width:100%}
   transition:opacity .18s ease;
   will-change:transform;
 }
-body.cursor-active .cursor{opacity:1}
+/* Sur les appareils à souris : curseur natif masqué partout, emoji visible partout */
+@media(hover:hover){
+  body.has-cursor,
+  body.has-cursor *{cursor:none}
+  body.has-cursor .cursor{opacity:1}
+}
 @media(hover:none),(max-width:700px){.cursor{display:none!important}}
 
 /* ===========================================================
@@ -351,17 +356,26 @@ body.cursor-active .cursor{opacity:1}
   .infos__footer-legal{display:none}
 }
 
-/* ---- Mentions légales : accordéon (titres + emoji au survol + clic) ---- */
-.legal{max-width:820px;margin-top:8px}
+/* ---- Mentions légales : accordéon (titres hovermoji + clic) ---- */
+.legal{max-width:none;margin-top:8px}
 .legal-item__title{
   cursor:pointer;list-style:none;font-weight:700;
-  font-size:clamp(20px,2.6vw,30px);line-height:1.15;
-  padding:18px 0;display:flex;align-items:center;gap:.4em;
+  font-size:clamp(32px,6vw,76px);line-height:1.05;letter-spacing:-.01em;
+  padding:8px 0;display:flex;align-items:baseline;gap:.3em;
 }
 .legal-item__title::-webkit-details-marker{display:none}
-.legal-item__title::before{content:"+";font-weight:400;opacity:.5}
+.legal-item__title::before{content:"+";font-weight:400;opacity:.4;font-size:.5em}
 .legal-item[open] .legal-item__title::before{content:"–"}
-.legal-item__title::after{content:attr(data-emoji);opacity:0;transition:opacity .2s ease}
-.legal-item__title:hover::after{opacity:1}
-.legal-item__body{padding:0 0 22px;max-width:70ch}
-.legal-item__body p{margin:0 0 .8em;font-size:15px;line-height:1.55}
+/* le titre se comporte comme un hovermoji : le texte s'efface, l'emoji prend sa place */
+.legal-title-text{position:relative;white-space:normal;transition:color .15s ease}
+.legal-item__title:hover .legal-title-text{color:transparent}
+.legal-title-text::after{
+  content:attr(data-emoji);font-family:var(--emoji-font);color:var(--ink);
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(0);transform-origin:center;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1);
+  font-size:1.1em;line-height:1;pointer-events:none;z-index:5;
+}
+.legal-item__title:hover .legal-title-text::after{transform:translate(-50%,-50%) scale(1)}
+.legal-item__body{padding:2px 0 30px;max-width:none}
+.legal-item__body p{margin:0 0 .5em;font-size:clamp(22px,4vw,48px);line-height:1.18;font-weight:400}

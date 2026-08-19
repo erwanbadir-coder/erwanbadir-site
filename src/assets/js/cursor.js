@@ -1,15 +1,18 @@
-// Curseur licorne : suit la souris, visible au survol des images de projet.
+// Curseur emoji : suit la souris sur tout le site (appareils à souris).
+// Par défaut = licorne. Au survol d'un lien / bouton = main qui pointe.
+// Sur l'accueil, au survol d'un projet = l'emoji défini pour ce projet.
 (function () {
   if (window.matchMedia("(hover:none)").matches) return;
   const cursor = document.querySelector(".cursor");
   if (!cursor) return;
 
+  const DEFAULT = "🦄";   // curseur par défaut
+  const LINK = "👆";      // au survol d'un lien / bouton
+
   let x = window.innerWidth / 2, y = window.innerHeight / 2;
   let tx = x, ty = y;
-
   window.addEventListener("mousemove", (e) => { x = e.clientX; y = e.clientY; });
 
-  // Lissage du mouvement
   function loop() {
     tx += (x - tx) * 0.25;
     ty += (y - ty) * 0.25;
@@ -18,14 +21,17 @@
   }
   loop();
 
-  // Affiche le curseur au-dessus des images de projet, et prend l'emoji
-  // défini pour ce projet (data-cursor), sinon la licorne par défaut.
-  const DEFAULT = "🦄";
-  document.querySelectorAll(".cell").forEach((cell) => {
-    cell.addEventListener("mouseenter", () => {
-      cursor.textContent = cell.dataset.cursor || DEFAULT;
-      document.body.classList.add("cursor-active");
-    });
-    cell.addEventListener("mouseleave", () => document.body.classList.remove("cursor-active"));
-  });
+  // Choix de l'emoji selon l'élément survolé
+  const INTERACTIVE = ".cell, a, button, summary, label, [role='button']";
+  function pick(target) {
+    const el = target && target.closest ? target.closest(INTERACTIVE) : null;
+    if (!el) return DEFAULT;
+    if (el.classList.contains("cell")) return el.dataset.cursor || DEFAULT; // projet sur l'accueil
+    return LINK;                                                            // lien / bouton
+  }
+  document.addEventListener("mouseover", (e) => { cursor.textContent = pick(e.target); });
+
+  // Masque l'emoji quand la souris quitte la fenêtre, le remontre au retour
+  document.addEventListener("mouseleave", () => { cursor.style.opacity = "0"; });
+  document.addEventListener("mouseenter", () => { cursor.style.opacity = ""; });
 })();
