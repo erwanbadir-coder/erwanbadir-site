@@ -7,8 +7,8 @@ backend:
   branch: main
 
 # Éditions enregistrées comme fichiers dans le dépôt (aucune base de données).
-media_folder: "src/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "src/images"
+public_folder: "/images"
 
 locale: "fr"
 
