@@ -349,3 +349,4 @@ body.cursor-active .cursor{opacity:1}
   .infos__footer{justify-content:space-between;gap:14px 12px;font-size:13px}
   .infos__footer-legal{display:none}
 }
+.cell--color .cell__img{filter:grayscale(0) contrast(1.02)}
