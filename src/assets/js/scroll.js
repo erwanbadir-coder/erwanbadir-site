@@ -1,7 +1,4 @@
 // Accueil : deux colonnes qui défilent en sens OPPOSÉ.
-// Gauche : de haut en bas (monte). Droite : inversée, de bas en haut (descend).
-// Résultat : l'image gauche et l'image droite d'un même projet restent face à
-// face pendant tout le scroll, et les colonnes vont visiblement à l'opposé.
 (function () {
   const index = document.getElementById("index");
   if (!index) return;
@@ -18,22 +15,18 @@
       right.style.top = "";
       return;
     }
-    // hauteur de scroll = hauteur d'une colonne (section épinglée)
     index.style.height = left.offsetHeight + "px";
     update();
   }
 
-  // On déplace les colonnes via `top` (et non `transform`) pour NE PAS isoler
-  // les images sur une couche à part : l'en-tête garde ainsi son blend exclusion.
   function update() {
     if (!isDesktop()) return;
     const range = Math.max(1, left.offsetHeight - window.innerHeight);
     const p = Math.min(1, Math.max(0, window.scrollY / range));
-    // animations réduites : les 2 colonnes défilent ensemble (pas de sens inverse)
     const rm = document.documentElement.classList.contains("rm") &&
                window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    left.style.top = `${-(p) * range}px`;                       // monte
-    right.style.top = `${(rm ? -(p) : -(1 - p)) * range}px`;   // inverse (ou ensemble si RM)
+    left.style.top = `${-(p) * range}px`;
+    right.style.top = `${(rm ? -(p) : -(1 - p)) * range}px`;
   }
 
   window.addEventListener("scroll", update, { passive: true });
@@ -45,17 +38,16 @@
   layout();
 })();
 
-/* ---- Page projet : flèche "retour en haut" + pause vidéo au clic ---- */
+/* ---- Page projet : flèche retour en haut + paysage plein cadre + autoplay vidéos ---- */
 (function () {
   const gallery = document.querySelector(".project__gallery");
 
-  // Flèche retour en haut : apparaît après ~4 images de hauteur défilées
   const btn = document.querySelector(".project__totop");
   if (btn && gallery) {
     const figures = Array.from(gallery.querySelectorAll(".project__figure"));
     let threshold = Infinity;
     function computeThreshold() {
-      const ref = figures[3] || figures[figures.length - 1]; // la 4e image
+      const ref = figures[3] || figures[figures.length - 1];
       threshold = ref ? ref.offsetTop : Infinity;
     }
     function onScroll() {
@@ -64,9 +56,7 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", () => { computeThreshold(); onScroll(); });
     window.addEventListener("load", () => { computeThreshold(); onScroll(); });
-    btn.addEventListener("click", () =>
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    );
+    btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
     computeThreshold();
     onScroll();
   }
@@ -78,7 +68,7 @@
     const apply = () => {
       const w = media.naturalWidth || media.videoWidth;
       const h = media.naturalHeight || media.videoHeight;
-      if (w && h && w > h) fig.classList.add("wide");   // paysage -> pleine largeur
+      if (w && h && w > h) fig.classList.add("wide");
     };
     if (media.tagName === "IMG") {
       media.complete ? apply() : media.addEventListener("load", apply);
@@ -89,29 +79,40 @@
 
   // Vidéos : lecture automatique en boucle (sans son), pause hors écran.
   const videos = Array.from(document.querySelectorAll(".project__video"));
+  function tryPlay(v) {
+    if (v._manualPause) return;
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  }
   videos.forEach((v) => {
-    v.muted = true;
-    v.playsInline = true;
+    v.muted = true; v.setAttribute("muted", "");
+    v.playsInline = true; v.setAttribute("playsinline", "");
     v.loop = true;
+    v.preload = "auto";
     v._manualPause = false;
-    // clic = pause / lecture manuelle
+    v.addEventListener("loadeddata", () => tryPlay(v));
+    v.addEventListener("canplay", () => tryPlay(v));
     v.addEventListener("click", () => {
-      if (v.paused) { v._manualPause = false; v.play().catch(() => {}); }
+      if (v.paused) { v._manualPause = false; tryPlay(v); }
       else { v._manualPause = true; v.pause(); }
     });
+    tryPlay(v);
   });
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        const v = e.target;
-        if (e.isIntersecting) { if (!v._manualPause) v.play().catch(() => {}); }
-        else v.pause();
+        if (e.isIntersecting) tryPlay(e.target);
+        else e.target.pause();
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
     videos.forEach((v) => io.observe(v));
-  } else {
-    videos.forEach((v) => v.play().catch(() => {}));
   }
+  function kick() {
+    videos.forEach((v) => { if (v.paused && !v._manualPause) tryPlay(v); });
+  }
+  ["pointerdown", "touchstart", "keydown", "scroll", "mousemove"].forEach((ev) =>
+    window.addEventListener(ev, kick, { once: true, passive: true })
+  );
 })();
 
 /* ---- Accueil mobile : masquer l'indice de scroll dès la 1re interaction ---- */
