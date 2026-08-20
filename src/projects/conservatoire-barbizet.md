@@ -43,10 +43,6 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/cartes-visite3-cpbm.jpg
-    video: ''
-    alt: ''
-    wide: false
   - image: /images/jpo-conservatoire.jpg
     video: ''
     alt: ''
