@@ -21,5 +21,7 @@ approach: >-
 
 
   La palette chromatique est composée de dégradés évoquant les nuances du lever et du coucher du soleil sur la Méditerranée. Des figures hybrides, pensées comme des chimères d'instruments, enrichissent le système graphique.
-images: []
+images:
+  - wide: false
+    video: /images/cpbm.mp4
 ---
