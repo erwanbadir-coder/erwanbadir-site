@@ -6,7 +6,7 @@ client: Conservatoire Pierre Barbizet de Marseille
 year: ''
 cover: /images/Plan de travail 1.jpg
 cover2: /images/La-muit-du-conservatoire-cover.webp
-colorSide: right
+colorSide: left
 cursorEmoji: 🦄
 developed: false
 context: ''
