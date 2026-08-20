@@ -16,19 +16,19 @@ approach: |-
   La palette chromatique est composée de dégradés évoquant les nuances du lever et du coucher du soleil sur la Méditerranée. Des figures hybrides, pensées comme des chimères d'instruments, enrichissent le système graphique.
 images:
   - image: ''
+    video: /images/cpbm-.mp4
+    alt: ''
+    wide: true
+  - image: ''
+    video: /images/cpbm-chimeres.mp4
+    alt: ''
+    wide: true
+  - image: ''
     video: /images/cpbm.mp4
     alt: ''
     wide: false
   - image: ''
-    video: /images/cpbm-.mp4
-    alt: ''
-    wide: false
-  - image: /images/carlissimo-4.jpg
-    video: ''
-    alt: ''
-    wide: false
-  - image: /images/jpo-conservatoire.jpg
-    video: ''
+    video: /images/carlissimo-hiver-2026.mp4
     alt: ''
     wide: false
 ---
