@@ -31,4 +31,44 @@ images:
     video: /images/carlissimo-hiver-2026.mp4
     alt: ''
     wide: false
+  - image: ''
+    video: /images/cpbm-plaquette-conservatoire.mp4
+    alt: ''
+    wide: true
+  - image: /images/cartes-visite-1-cpbm.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/cartes-visite3-cpbm.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/cartes-visite3-cpbm.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/jpo-conservatoire.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/carlissimo.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/carlissimo-4.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/carlissimo camion.jpg
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/identité conservatoire.jpg
+    video: ''
+    alt: ''
+    wide: true
+  - image: /images/enveloppes-CPBM.jpg
+    video: ''
+    alt: ''
+    wide: false
 ---
