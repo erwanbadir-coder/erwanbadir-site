@@ -24,4 +24,7 @@ approach: >-
 images:
   - wide: false
     video: /images/cpbm.mp4
+  - wide: false
+    video: /images/cpbm-.mp4
+  - wide: false
 ---
