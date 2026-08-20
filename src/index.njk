@@ -9,6 +9,7 @@ bodyClass: page-home
         <a class="cell{% if project.data.colorSide == 'left' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/" data-cursor="{{ project.data.cursorEmoji or '🦄' }}">
           <img class="cell__img" src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
           {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
+          {% if design.homeCaptions %}<span class="cell__cap">{% if project.data.client %}<span class="cell__cap-client">{{ project.data.client }}</span>{% endif %}<span class="cell__cap-title">{{ project.data.title }}</span>{% if project.data.year %}<span class="cell__cap-year">{{ project.data.year }}</span>{% endif %}</span>{% endif %}
         </a>
       {% endfor %}
     </div>
@@ -17,6 +18,7 @@ bodyClass: page-home
         <a class="cell{% if project.data.colorSide == 'right' or project.data.colorSide == 'both' %} cell--color{% endif %}" href="/projets/{{ project.fileSlug }}/" data-cursor="{{ project.data.cursorEmoji or '🦄' }}">
           <img class="cell__img" src="{{ project.data.cover2 or project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
           {% if design.projectNames %}<span class="cell__name">{{ project.data.title }}</span>{% endif %}
+          {% if design.homeCaptions %}<span class="cell__cap">{% if project.data.client %}<span class="cell__cap-client">{{ project.data.client }}</span>{% endif %}<span class="cell__cap-title">{{ project.data.title }}</span>{% if project.data.year %}<span class="cell__cap-year">{{ project.data.year }}</span>{% endif %}</span>{% endif %}
         </a>
       {% endfor %}
     </div>
