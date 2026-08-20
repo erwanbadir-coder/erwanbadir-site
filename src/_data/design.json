@@ -7,6 +7,6 @@
   "projGap": 24,
   "cursor": true,
   "scrollHint": true,
-  "projectNames": false,
+  "projectNames": true,
   "reduceMotion": true
 }
