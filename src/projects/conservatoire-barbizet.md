@@ -27,4 +27,8 @@ images:
   - wide: false
     video: /images/cpbm-.mp4
   - wide: false
+  - wide: false
+    image: /images/jpo-conservatoire.jpg
+  - wide: false
+    image: /images/carlissimo.jpg
 ---
