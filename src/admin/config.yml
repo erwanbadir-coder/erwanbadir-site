@@ -82,6 +82,7 @@ collections:
           - { name: "cursor", label: "Curseur licorne", widget: "boolean", default: true }
           - { name: "scrollHint", label: "Indice de scroll (mobile)", widget: "boolean", default: true }
           - { name: "projectNames", label: "Afficher le nom des projets sur l'accueil", widget: "boolean", default: false, hint: "Au survol sur ordinateur, visible en petit sur mobile." }
+          - { name: "homeCaptions", label: "Afficher une légende sur l'accueil", widget: "boolean", default: false, hint: "Légende très discrète en bas de chaque image : client · titre · année." }
           - { name: "reduceMotion", label: "Respecter « animations réduites » du système", widget: "boolean", default: true, hint: "Adoucit le double-scroll et coupe les indices animés pour les personnes qui l'ont activé sur leur appareil." }
       - name: "infos"
         label: "Page Infos"
