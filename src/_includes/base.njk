@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     /* applique le thème enregistré avant le rendu (évite le clignotement) */
-    (function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+    (function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}
+    document.documentElement.className+=' is-loading';})();
   </script>
   {#- ---- SEO : titre + description calculés par page ---- -#}
   {%- set pageTitle = (title + " — " + site.name) if title else (site.name + " — " + site.tagline) -%}
@@ -52,9 +53,46 @@
       --paper:{{ design.paperDark }};
       --ink:{{ design.inkDark }};
     }
+
+    /* ---- Écran de chargement (licorne qui se colorise selon l'avancée) ---- */
+    html.is-loading,html.is-loading body{overflow:hidden}
+    .loader{
+      position:fixed;inset:0;z-index:9999;background:var(--paper);
+      display:flex;align-items:center;justify-content:center;
+      transition:opacity .55s ease;
+    }
+    .loader.is-done{opacity:0;pointer-events:none}
+    .loader__logo{
+      position:absolute;top:18px;left:22px;
+      width:150px;height:26px;background:var(--ink);
+      -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+      -webkit-mask-size:contain;mask-size:contain;
+      -webkit-mask-position:left center;mask-position:left center;
+    }
+    .loader__uni{
+      font-family:var(--emoji-font);
+      font-size:clamp(96px,20vw,168px);line-height:1;
+      /* état de départ : licorne pâle et désaturée */
+      filter:grayscale(1) saturate(.5) opacity(.35);
+      transition:filter .3s ease;will-change:filter;
+      -webkit-user-select:none;user-select:none;
+    }
+    @media(max-width:700px){
+      .loader__logo{width:96px;height:17px;top:12px;left:14px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .loader,.loader__uni{transition:none}
+    }
   </style>
+  <noscript><style>.loader{display:none!important}html.is-loading{overflow:auto}</style></noscript>
 </head>
 <body class="{{ bodyClass }}{% if design.cursor %} has-cursor{% endif %}">
+
+  {#- Écran de chargement : logo + licorne qui se colorise selon l'avancée -#}
+  <div id="loader" class="loader" role="status" aria-label="Chargement">
+    {% if site.logo %}<span class="loader__logo" style="-webkit-mask-image:url('{{ site.logo }}');mask-image:url('{{ site.logo }}')"></span>{% endif %}
+    <span class="loader__uni" aria-hidden="true">🦄</span>
+  </div>
 
   {% include "header.njk" %}
 
@@ -63,6 +101,49 @@
   </main>
 
   {% if design.cursor %}<div class="cursor" aria-hidden="true">🦄</div>{% endif %}
+
+  <script>
+    /* Loader : la licorne (pâle au départ) se colorise selon l'avancée réelle
+       du chargement des images, avec une montée douce garantie.
+       Filets de sécurité : window.load + délai max -> disparaît toujours. */
+    (function(){
+      var L=document.getElementById('loader'); if(!L){document.documentElement.classList.remove('is-loading');return;}
+      /* affiché une seule fois par session (pas à chaque clic interne).
+         Pour le remettre à chaque page : supprimer ce bloc + la ligne sessionStorage.setItem plus bas. */
+      var seen; try{seen=sessionStorage.getItem('eb_loaded');}catch(e){}
+      if(seen){ if(L.parentNode)L.parentNode.removeChild(L); document.documentElement.classList.remove('is-loading'); return; }
+      var uni=L.querySelector('.loader__uni');
+      var imgs=[].slice.call(document.images);
+      var pending=imgs.filter(function(i){return !i.complete;});   /* uniquement celles en cours */
+      var total=pending.length,done=0,over=false,t0=Date.now();
+      function setP(p){ if(!uni)return; p=p<0?0:p>1?1:p;
+        uni.style.filter='grayscale('+(1-p).toFixed(3)+') saturate('+(0.4+1.2*p).toFixed(3)+') opacity('+(0.45+0.55*p).toFixed(3)+')';
+      }
+      function realP(){ return total? done/total : 1; }
+      function tick(){ if(over)return;
+        var e=(Date.now()-t0)/1000; if(e>0.9)e=0.9;               /* montée douce plafonnée à 0.9 */
+        setP(Math.max(realP(),e));
+        requestAnimationFrame(tick);
+      }
+      pending.forEach(function(im){
+        im.addEventListener('load',function(){done++;},{once:true});
+        im.addEventListener('error',function(){done++;},{once:true});
+      });
+      setP(0); requestAnimationFrame(tick);
+      var MIN=1000;                                                /* durée mini d'affichage (le moment de marque) */
+      function finish(){ if(over)return;
+        var wait=MIN-(Date.now()-t0); if(wait>0){ setTimeout(finish,wait); return; }
+        over=true; setP(1);
+        try{sessionStorage.setItem('eb_loaded','1');}catch(e){}
+        setTimeout(function(){ L.classList.add('is-done'); document.documentElement.classList.remove('is-loading');
+          setTimeout(function(){ if(L&&L.parentNode)L.parentNode.removeChild(L); },650);
+        },200);
+      }
+      if(document.readyState==='complete') finish();
+      else window.addEventListener('load',finish);
+      setTimeout(finish,5000);
+    })();
+  </script>
 
   <script src="/assets/js/cursor.js" defer></script>
   <script src="/assets/js/scroll.js" defer></script>
