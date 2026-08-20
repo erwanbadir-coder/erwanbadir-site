@@ -1,10 +1,11 @@
 # local_backend permet d'utiliser l'admin en local (via `npx decap-server`).
 # En ligne (Netlify), c'est git-gateway qui prend le relais automatiquement.
-local_backend: true
-
 backend:
-  name: git-gateway
+  name: github
+  repo: erwanbadir-coder/erwanbadir-site
   branch: main
+  base_url: https://erwanbadir-site.pages.dev
+  auth_endpoint: auth
 
 # Éditions enregistrées comme fichiers dans le dépôt (aucune base de données).
 media_folder: "src/images"

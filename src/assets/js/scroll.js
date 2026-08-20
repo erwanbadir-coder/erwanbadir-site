@@ -71,12 +71,47 @@
     onScroll();
   }
 
-  // Vidéos : autoplay/boucle, mais cliquables pour mettre en pause / relancer
-  document.querySelectorAll(".project__video").forEach((v) => {
+  // Images / vidéos PAYSAGE (largeur > hauteur) : pleine largeur automatiquement.
+  document.querySelectorAll(".project__figure").forEach((fig) => {
+    const media = fig.querySelector("img, video");
+    if (!media) return;
+    const apply = () => {
+      const w = media.naturalWidth || media.videoWidth;
+      const h = media.naturalHeight || media.videoHeight;
+      if (w && h && w > h) fig.classList.add("wide");   // paysage -> pleine largeur
+    };
+    if (media.tagName === "IMG") {
+      media.complete ? apply() : media.addEventListener("load", apply);
+    } else {
+      media.readyState >= 1 ? apply() : media.addEventListener("loadedmetadata", apply);
+    }
+  });
+
+  // Vidéos : lecture automatique en boucle (sans son), pause hors écran.
+  const videos = Array.from(document.querySelectorAll(".project__video"));
+  videos.forEach((v) => {
+    v.muted = true;
+    v.playsInline = true;
+    v.loop = true;
+    v._manualPause = false;
+    // clic = pause / lecture manuelle
     v.addEventListener("click", () => {
-      v.paused ? v.play() : v.pause();
+      if (v.paused) { v._manualPause = false; v.play().catch(() => {}); }
+      else { v._manualPause = true; v.pause(); }
     });
   });
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting) { if (!v._manualPause) v.play().catch(() => {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.2 });
+    videos.forEach((v) => io.observe(v));
+  } else {
+    videos.forEach((v) => v.play().catch(() => {}));
+  }
 })();
 
 /* ---- Accueil mobile : masquer l'indice de scroll dès la 1re interaction ---- */
