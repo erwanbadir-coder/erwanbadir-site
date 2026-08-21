@@ -24,7 +24,7 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/insto-postertober142 copie.webp
+  - image: /images/insto-postertoberj3 copie.webp
     video: ''
     alt: ''
     wide: false
