@@ -28,7 +28,7 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/Mosaique2 jpo.jpg
+  - image: /images/esdac-jpo-mise-en-situ1.webp
     video: ''
     alt: ''
     wide: false
@@ -48,7 +48,7 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/MosaiqueJPO1.jpg
+  - image: /images/esdac-jpo-mise-en-situ2.webp
     video: ''
     alt: ''
     wide: false
