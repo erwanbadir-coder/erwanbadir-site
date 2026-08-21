@@ -28,4 +28,20 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/insto-postertoberJ82 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insto-postertoberverre2 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/culturathon2 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insto-postertober162 copie.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
