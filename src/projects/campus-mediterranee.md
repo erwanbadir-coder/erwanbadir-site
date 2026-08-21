@@ -4,7 +4,7 @@ order: 5
 category: Identité visuelle
 client: Campus art Méditerranée
 year: '2025'
-cover: /images/cam.jpg
+cover: /images/Campus-art-mediterranee-cover.webp
 cover2: /images/projects/campus-mediterranee-cover2.jpg
 colorSide: right
 cursorEmoji: 🦄
