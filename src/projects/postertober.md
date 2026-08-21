@@ -11,5 +11,21 @@ cursorEmoji: 🦄
 developed: false
 context: ''
 approach: ''
-images: []
+images:
+  - image: /images/insto-postertober-10-134 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insto-postertober-10-136 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insto-postertober142 copie.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insto-postertober142 copie.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
