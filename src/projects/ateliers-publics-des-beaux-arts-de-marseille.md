@@ -1,11 +1,27 @@
 ---
 title: Ateliers Publics des Beaux-Arts de Marseille
 order: 2
-category: "Identité visuelle / Affiches "
+category: Identité visuelle / Affiches
 client: INSEAMM
-cover: /images/atelier-publics-cover.webp
+year: ''
+cover: /images/atelier-publics-cover copie.webp
 cover2: /images/ateliers-publics-2026-cover2.webp
 colorSide: left
+cursorEmoji: 🦄
 developed: false
-images: []
+context: ''
+approach: ''
+images:
+  - image: /images/Ateliers-publics-affiches1.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/Ateliers-publics-depliant1.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/IMG_8280.jpg
+    video: ''
+    alt: ''
+    wide: false
 ---
