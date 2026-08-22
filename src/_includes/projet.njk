@@ -46,7 +46,8 @@ bodyClass: page-project
           {% if item.video %}
             <video class="project__video" src="{{ item.video }}" autoplay muted loop playsinline preload="metadata" title="Cliquer pour mettre en pause / lire"{% if item.image %} poster="{{ item.image }}"{% endif %}></video>
           {% else %}
-            <img src="{{ item.image }}" alt="{{ item.alt or title }}" loading="lazy">
+            {%- set dim = item.image | imgSize -%}
+            <img src="{{ item.image }}" alt="{{ item.alt or title }}" loading="lazy"{% if dim %} width="{{ dim.width }}" height="{{ dim.height }}"{% endif %}>
           {% endif %}
         </figure>
       {% endfor %}
