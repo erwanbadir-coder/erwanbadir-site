@@ -14,11 +14,19 @@
 
   function computeAvg(img) {
     try {
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      if (!iw || !ih) return null;
+      // On échantillonne la ZONE RÉELLEMENT DERRIÈRE L'EN-TÊTE : le haut de
+      // l'image (≈12 %) sur les 60 % centraux de la largeur (en mobile
+      // object-fit:cover recadre les côtés). Sinon la moyenne de toute l'image
+      // choisit une couleur fausse quand le haut diffère du reste.
+      const sx = Math.floor(iw * 0.20), sw = Math.max(1, Math.floor(iw * 0.60));
+      const sy = 0,                     sh = Math.max(1, Math.floor(ih * 0.12));
       const c = document.createElement("canvas");
-      c.width = 8; c.height = 8;
+      c.width = 12; c.height = 8;
       const ctx = c.getContext("2d");
-      ctx.drawImage(img, 0, 0, 8, 8);
-      const d = ctx.getImageData(0, 0, 8, 8).data;
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 12, 8);
+      const d = ctx.getImageData(0, 0, 12, 8).data;
       let r = 0, g = 0, b = 0, n = 0;
       for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; }
       r /= n; g /= n; b /= n;
@@ -64,6 +72,12 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
   window.addEventListener("load", adapt);
+  // MOBILE : l'accueil défile HORIZONTALEMENT dans un conteneur, pas la fenêtre.
+  // On écoute donc aussi le défilement du carrousel pour recalculer la couleur
+  // à chaque image qui passe sous l'en-tête.
+  document.querySelectorAll(".index__stage, .index").forEach((el) =>
+    el.addEventListener("scroll", onScroll, { passive: true })
+  );
   imgs.forEach((img) => { if (!img.complete) img.addEventListener("load", adapt); });
   adapt();
 })();
