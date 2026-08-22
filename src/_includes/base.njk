@@ -4,8 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    /* applique le thème enregistré avant le rendu (évite le clignotement) */
-    (function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}
+    /* Applique le thème avant le rendu (évite le clignotement).
+       Priorité : choix enregistré par l'utilisateur ; à défaut, préférence
+       système (OS en mode sombre => site en sombre au premier chargement). */
+    (function(){try{
+      var t=localStorage.getItem('theme');
+      if(t==='dark' || (!t && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches))
+        document.documentElement.setAttribute('data-theme','dark');
+    }catch(e){}
     document.documentElement.className+=' is-loading';})();
   </script>
   {#- ---- SEO : titre + description calculés par page ---- -#}
@@ -23,7 +29,8 @@
   <meta name="description" content="{{ pageDesc }}">
   <meta name="author" content="{{ site.name }}">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="{{ design.paper }}">
+  <meta name="theme-color" content="{{ design.paper }}" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="{{ design.paperDark }}" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="{{ canonical }}">
   <link rel="icon" href="{{ site.logo }}" type="image/svg+xml">
 
