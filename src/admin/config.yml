@@ -1,5 +1,6 @@
 # local_backend permet d'utiliser l'admin en local (via `npx decap-server`).
-# En ligne (Netlify), c'est git-gateway qui prend le relais automatiquement.
+# En ligne (Cloudflare Pages), l'authentification passe par le backend GitHub
+# (OAuth via les fonctions /auth et /callback).
 backend:
   name: github
   repo: erwanbadir-coder/erwanbadir-site
