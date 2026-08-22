@@ -76,13 +76,29 @@ img{display:block;max-width:100%}
   -webkit-mask-position:left center;mask-position:left center;
 }
 @media(max-width:700px){
-  .site-header{font-size:15px;padding:12px 14px;gap:10px;align-items:center}
-  .site-header__tagline{display:block;flex:1;text-align:center;font-size:14px;line-height:1.15}
-  .site-header__logomark{width:calc(var(--logo-w,150px) * .56);height:17px}
+  /* T4a — en-tête mobile deux rangées : logo agrandi et centré au-dessus,
+     baseline centrée en dessous sur toute la largeur, burger sorti du flux
+     en haut à droite pour ne pas casser le centrage. */
+  :root{--header-h:80px;}                  /* deux rangées : en-tête réel ≈77px + petite marge */
+  .site-header{
+    flex-direction:column;align-items:center;gap:6px;
+    padding:14px 54px 12px;                /* marge latérale pour dégager le burger */
+    font-size:15px;text-align:center;
+  }
+  .site-header__logo{margin:0 auto}
+  .site-header__logomark{
+    width:min(62vw,240px);height:auto;
+    aspect-ratio:898.22 / 104.35;          /* ratio réel du SVG : aucune déformation */
+  }
+  .site-header__tagline{
+    display:block;flex:none;width:100%;
+    text-align:center;font-size:14px;line-height:1.2;
+  }
   /* Infos + thème inline -> déplacés dans le burger */
   .site-header > .site-header__infos{display:none}
   .site-header > .site-header__theme{display:none}
   .site-header__burger{
+    position:absolute;top:14px;right:14px;
     display:block;background:none;border:0;padding:0;cursor:pointer;
     font-family:inherit;color:inherit;font-size:24px;line-height:1;
   }
