@@ -115,6 +115,41 @@
   );
 })();
 
+/* ---- Page projet MOBILE : ancrage du défilement par écran ----
+   La pellicule garde chaque média en pleine hauteur (largeur = ratio) ; ici on
+   cale le défilement horizontal sur l'écran le plus proche quand on relâche —
+   un pas = un écran, MÊME à l'intérieur d'une image plus large qu'un écran.
+   (Le CSS `scroll-snap` ne sait ancrer que sur les bords d'un média, jamais à
+   l'intérieur d'un média surdimensionné ; d'où ce petit script, sans dépendance.) */
+(function () {
+  const main = document.querySelector(".project__main");
+  if (!main) return;
+  const mqMobile = window.matchMedia("(max-width: 700px)");
+  const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let timer = null;
+  let snapping = false;
+
+  function snap() {
+    if (!mqMobile.matches) return;                 // desktop : grille, on ne touche pas
+    const w = main.clientWidth;
+    if (w <= 0) return;
+    if (main.scrollWidth - w < 4) return;          // pas de débordement horizontal
+    let target = Math.round(main.scrollLeft / w) * w;
+    const max = main.scrollWidth - w;
+    if (target > max) target = max;
+    if (Math.abs(target - main.scrollLeft) < 1) return;
+    snapping = true;
+    main.scrollTo({ left: target, behavior: mqReduce.matches ? "auto" : "smooth" });
+    setTimeout(() => { snapping = false; }, 450);
+  }
+
+  main.addEventListener("scroll", () => {
+    if (snapping) return;                          // ignore les événements de notre propre recentrage
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(snap, 110);                 // on ancre quand le doigt a relâché
+  }, { passive: true });
+})();
+
 /* ---- Accueil mobile : masquer l'indice de scroll dès la 1re interaction ---- */
 (function () {
   const hint = document.querySelector(".scroll-hint");
