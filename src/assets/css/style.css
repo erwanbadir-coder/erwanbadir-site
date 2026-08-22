@@ -6,6 +6,7 @@
   --paper:#fff;
   --gap:0px;
   --header-h:64px;
+  --proj-gap:24px;                 /* marge commune (photos + texte↔images) — valeur par défaut, surchargée par l'admin */
   color-scheme:light;
   /* Échelle typographique : titres = intro × nombre d'or (φ ≈ 1.618) */
   --intro-size:clamp(28px, 5vw, 64px);
@@ -128,6 +129,19 @@ img{display:block;max-width:100%}
 }
 @media(hover:none),(max-width:700px){.cursor{display:none!important}}
 
+/* ---------- Accessibilité : focus clavier ---------- */
+/* Anneau visible sur tout élément interactif atteint au clavier.
+   :focus-visible ne se déclenche pas à la souris : le comportement souris
+   reste strictement inchangé. */
+:where(a,button,[tabindex]):focus-visible{
+  outline:2px solid currentcolor;
+  outline-offset:3px;
+}
+/* Sur une vignette d'accueil focalisée au clavier : on révèle le nom du projet
+   et on passe l'image en couleur, comme au survol souris. */
+.cell:focus-visible .cell__name{opacity:1;transform:none}
+.cell:focus-visible .cell__img{filter:grayscale(0)}
+
 /* ===========================================================
    ACCUEIL — index deux colonnes plein cadre
    =========================================================== */
@@ -202,17 +216,24 @@ img{display:block;max-width:100%}
   .cell__cap{padding:10px 12px;font-size:10px}
 }
 
-/* Animations réduites : si l'utilisateur l'a activé sur son appareil */
+/* Animations réduites : si l'utilisateur l'a activé sur son appareil.
+   Reset universel : plus aucune transition ni animation perceptible. */
 @media(prefers-reduced-motion:reduce){
-  .rm .scroll-hint{display:none}
-  .rm .hovermoji::after{transition:opacity .1s ease}
-  .rm .project__totop{transition:opacity .1s ease}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  /* On GARDE l'indice « Glissez → » visible (l'animation le terminait à
+     opacity:0, donc figée elle le faisait disparaître). display reste géré
+     par les règles existantes : none sur desktop, flex sous 700 px. */
+  .scroll-hint,.scroll-hint__arw{animation:none}
+  .scroll-hint{opacity:1}
 }
 
 /* ===========================================================
    PAGE PROJET — moitié texte (fixe) / moitié images (défilent)
    =========================================================== */
-:root{--proj-gap:24px}                                   /* marge commune (photos + texte↔images) */
 
 /* fond blanc derrière l'en-tête, uniquement sur les pages projet */
 .page-project .site-header{mix-blend-mode:normal;background:var(--paper);color:var(--ink)}
@@ -230,9 +251,11 @@ img{display:block;max-width:100%}
   height:calc(100vh - var(--header-h) - var(--proj-gap)*2);
   display:flex;flex-direction:column;justify-content:space-between;
 }
-.project__cat{font-size:clamp(22px,2.5vw,36px);line-height:1.05;font-weight:400;margin-bottom:16px}
+/* Nom du projet = titre principal (h1) : le plus gros texte de la page. */
+.project__name{font-size:clamp(22px,2.5vw,36px);font-style:italic;line-height:1.05;font-weight:400;margin-bottom:12px}
+/* Catégorie = étiquette secondaire, petit corps discret. */
+.project__cat{font-size:14px;font-weight:400;opacity:.7;line-height:1.2;margin-bottom:18px}
 .project__cat b{font-weight:700}
-.project__name{font-style:italic;font-size:18px;margin-bottom:2px}
 .project__client{font-size:18px;font-weight:400}
 .project__year{font-size:18px;opacity:.75;margin-bottom:22px}
 .project__desc{font-size:16px;line-height:1.5}
