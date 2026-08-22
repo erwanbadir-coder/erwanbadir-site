@@ -1,0 +1,17 @@
+# En-têtes de sécurité — Cloudflare Pages.
+# Ce fichier est copié tel quel à la racine de la sortie de build (_site).
+#
+# Pas de Content-Security-Policy ici : la page d'accueil contient deux scripts
+# inline (thème anti-clignotement + loader). Une CSP « script-src 'self' »
+# casserait le site. Si une CSP est ajoutée un jour, la déployer d'abord en
+# Content-Security-Policy-Report-Only, relever les violations, puis basculer.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow
