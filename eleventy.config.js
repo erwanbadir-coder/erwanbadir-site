@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
+  eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
 
   // Collection "projects" triée par le champ `order` (ordre d'affichage)
   eleventyConfig.addCollection("projects", (collectionApi) => {
