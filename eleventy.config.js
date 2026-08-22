@@ -1,3 +1,7 @@
+const sizeOf = require("image-size");
+const nodePath = require("node:path");
+const fs = require("node:fs");
+
 module.exports = function (eleventyConfig) {
   // Copie telle quelle des fichiers statiques
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -23,6 +27,25 @@ module.exports = function (eleventyConfig) {
     if (!str) return "";
     const t = String(str).replace(/\s+/g, " ").trim();
     return t.length > 160 ? t.slice(0, 157).replace(/\s+\S*$/, "") + "…" : t;
+  });
+
+  // Dimensions réelles d'une image du dossier /images, lues au build.
+  // Sert à écrire width/height sur les <img> : le navigateur réserve la
+  // bonne largeur AVANT le chargement (évite le saut de défilement de la
+  // galerie mobile, cf. audit T17). Renvoie null si le fichier est absent
+  // ou illisible (ex. nouvelle image ajoutée sans build) -> aucun attribut,
+  // comportement inchangé.
+  eleventyConfig.addFilter("imgSize", (src) => {
+    try {
+      if (!src || typeof src !== "string" || !src.startsWith("/images/")) return null;
+      const file = nodePath.join(__dirname, "src", src);
+      if (!fs.existsSync(file)) return null;
+      const d = sizeOf(file);
+      if (!d || !d.width || !d.height) return null;
+      return { width: d.width, height: d.height };
+    } catch (e) {
+      return null;
+    }
   });
 
   // SEO : transforme un chemin relatif en URL absolue (pour Open Graph)
