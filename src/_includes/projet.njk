@@ -10,9 +10,12 @@ bodyClass: page-project
     <aside class="project__aside">
       <div class="project__info">
         <h1 class="project__name">{{ title }}</h1>
-        {% if category %}<p class="project__cat">Catégorie&nbsp;| <b>{{ category }}</b></p>{% endif %}
-        {% if client %}<p class="project__client"><strong>Client : {{ client }}</strong></p>{% endif %}
-        {% if year %}<p class="project__year">{{ year }}</p>{% endif %}
+        <dl class="project__meta">
+          {% if client %}<div class="project__meta-row"><dt>Client</dt><dd>{{ client }}</dd></div>{% endif %}
+          {% if category %}<div class="project__meta-row"><dt>Service</dt><dd>{{ category }}</dd></div>{% endif %}
+          {% if year %}<div class="project__meta-row"><dt>Date</dt><dd>{{ year }}</dd></div>{% endif %}
+          {% if lieu %}<div class="project__meta-row"><dt>Lieu</dt><dd>{{ lieu }}</dd></div>{% endif %}
+        </dl>
 
         {% if developed %}
           <div class="project__desc">
