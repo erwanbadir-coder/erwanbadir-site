@@ -4,8 +4,8 @@ order: 4
 category: Identité visuelle
 client: Conservatoire Pierre Barbizet de Marseille
 year: ''
-cover: /images/Plan de travail 1.jpg
-cover2: /images/La-muit-du-conservatoire-cover.webp
+cover: /images/la-nuit-du-conservatoire-cover.jpg
+cover2: /images/la-nuit-du-conservatoire-cover2.webp
 colorSide: left
 cursorEmoji: 🦄
 developed: false

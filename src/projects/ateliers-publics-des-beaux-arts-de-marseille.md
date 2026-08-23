@@ -4,7 +4,7 @@ order: 2
 category: Identité visuelle / Affiches
 client: INSEAMM
 year: ''
-cover: /images/atelier-publics-cover copie.webp
+cover: /images/ateliers-publics-cover.webp
 cover2: /images/ateliers-publics-2026-cover2.webp
 colorSide: left
 cursorEmoji: 🦄
