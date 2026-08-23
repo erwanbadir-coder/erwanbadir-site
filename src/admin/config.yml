@@ -27,9 +27,10 @@ collections:
     fields:
       - { name: "title", label: "Titre du projet", widget: "string" }
       - { name: "order", label: "Ordre d'affichage (petit = en premier)", widget: "number", value_type: "int", default: 10 }
-      - { name: "category", label: "Catégorie", widget: "string", required: false, hint: "ex. Identité visuelle, Affiches, Logotype" }
       - { name: "client", label: "Client", widget: "string", required: false }
-      - { name: "year", label: "Année", widget: "string", required: false }
+      - { name: "category", label: "Service", widget: "string", required: false, hint: "Type de prestation. ex. Identité visuelle, Affiches, Logotype" }
+      - { name: "year", label: "Date", widget: "string", required: false, hint: "Année ou période. ex. 2026" }
+      - { name: "lieu", label: "Lieu", widget: "string", required: false, hint: "Ville ou lieu du projet — facultatif. ex. Marseille" }
       - { name: "cover", label: "Image d'appel GAUCHE (accueil)", widget: "image", required: false, hint: "Image couleur : affichée en N&B, passe en couleur au survol." }
       - { name: "cover2", label: "Image d'appel DROITE (accueil)", widget: "image", required: false, hint: "2e image d'appel du projet (colonne de droite). Vide = reprend l'image de gauche." }
       - name: "colorSide"
