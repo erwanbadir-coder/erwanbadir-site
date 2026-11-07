@@ -51,4 +51,8 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/insta-postertober-2026-FFv24.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
