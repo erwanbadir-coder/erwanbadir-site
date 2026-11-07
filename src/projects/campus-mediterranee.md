@@ -1,9 +1,10 @@
 ---
 title: Campus art Méditerranée
-order: 5
-category: Identité visuelle
+order: 6
 client: Campus art Méditerranée
+category: Identité visuelle
 year: '2025'
+lieu: ''
 cover: /images/Campus-art-mediterranee-cover.webp
 cover2: /images/projects/campus-mediterranee-cover2.jpg
 colorSide: right
