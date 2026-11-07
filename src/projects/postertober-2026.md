@@ -67,4 +67,8 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/Le Mans Sonore.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
