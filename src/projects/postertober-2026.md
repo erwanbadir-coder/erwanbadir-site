@@ -10,7 +10,9 @@ cover2: /images/Utopialles.webp
 colorSide: left
 cursorEmoji: 🚀
 developed: true
-context: Poster Tober est un challenge créatif imaginé par Nicolas Cubi sur le principe de l'inktober. Chaque jour un brief (fictif) différent pour la réalisation d'une affiche.
+context: |-
+  Poster Tober est un challenge créatif imaginé par Nicolas Cubi sur le principe de l'inktober. 
+  Chaque jour un brief (fictif) différent pour la réalisation d'une affiche.
 approach: ''
 images:
   - image: /images/insta-postertober-2026-ARLES4.webp
