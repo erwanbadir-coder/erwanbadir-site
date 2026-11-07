@@ -1,9 +1,10 @@
 ---
 title: Conservatoire Pierre Barbizet
-order: 3
-category: Identité visuelle
+order: 4
 client: Conservatoire Pierre Barbizet de Marseille
+category: Identité visuelle
 year: '2026'
+lieu: ''
 cover: /images/cpbm-livret-cover.webp
 cover2: /images/cpbm-cover2.webp
 colorSide: right
