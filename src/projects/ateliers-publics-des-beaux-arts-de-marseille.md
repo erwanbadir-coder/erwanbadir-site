@@ -1,6 +1,6 @@
 ---
 title: Ateliers Publics des Beaux-Arts de Marseille
-order: 4
+order: 3
 client: INSEAMM
 category: Identité visuelle / Affiches
 year: ''
