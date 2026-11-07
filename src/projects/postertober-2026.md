@@ -27,4 +27,20 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/postertober 2026-Fete science5.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-CITRONS4.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-CITRONS8.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: ''
+    video: ''
+    alt: ''
+    wide: false
 ---
