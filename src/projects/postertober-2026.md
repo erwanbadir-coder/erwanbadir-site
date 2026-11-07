@@ -63,4 +63,8 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/Image Finale.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
