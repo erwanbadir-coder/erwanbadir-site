@@ -1,15 +1,16 @@
 ---
-title: Postertober
+title: Postertober 2025
 order: 6
-category: Identité visuelle / Affiche
 client: Projet Personnel
-year: '2026'
+category: Identité visuelle / Affiche
+year: '2025'
+lieu: ''
 cover: /images/postertoberJ45.jpg
 cover2: /images/postertoberJ42.jpg
 colorSide: left
 cursorEmoji: 🦄
 developed: false
-context: ''
+context: PosterTober est un challenge créatif imaginé par Nicolas Cubi. Pendant 31 jours un brief fictif chaque jour pour la réalisation d'une affiche
 approach: ''
 images:
   - image: /images/insto-postertober-10-134 copie.webp
