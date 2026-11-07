@@ -1,9 +1,10 @@
 ---
 title: ESDAC — Journée Portes Ouvertes
-order: 1
-category: Identité visuelle / Affiches
+order: 2
 client: ESDAC Marseille
+category: Identité visuelle / Affiches
 year: '2026'
+lieu: ''
 cover: /images/esdac-jpo2026-cover2.webp
 cover2: /images/esdac-jpo2026-cover.webp
 colorSide: right
