@@ -14,7 +14,7 @@ context: Poster Tober est un challenge créatif imaginé par Nicolas Cubi sur le
 approach: ''
 images:
   - image: /images/Citron 1.webp
-    video: /images/Citron2.webp
+    video: ''
     alt: ''
     wide: false
   - image: /images/Dinan SITU.webp
