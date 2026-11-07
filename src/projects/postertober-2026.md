@@ -5,10 +5,10 @@ client: Projet personnel
 category: Affiches
 year: Octobre 2026
 lieu: ''
-cover: /images/Jardin 1-2-Caméra.png
-cover2: /images/Utopialles.jpg
+cover: /images/Jardin 1-2-Caméra.webp
+cover2: /images/Utopialles.webp
 colorSide: left
-cursorEmoji: 🦄
+cursorEmoji: 🚀
 developed: false
 context: ''
 approach: ''
