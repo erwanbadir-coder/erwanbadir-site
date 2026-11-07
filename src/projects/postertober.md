@@ -1,6 +1,6 @@
 ---
 title: Postertober 2025
-order: 6
+order: 7
 client: Projet Personnel
 category: Identité visuelle / Affiche
 year: '2025'
