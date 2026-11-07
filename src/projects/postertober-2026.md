@@ -55,4 +55,12 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: ''
+    video: /images/DP1-web.mp4
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-Design Parade.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
