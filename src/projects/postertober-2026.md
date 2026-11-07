@@ -47,7 +47,7 @@ images:
     video: /images/DINAN-web.mp4
     alt: ''
     wide: false
-  - image: ''
+  - image: /images/insta-postertober-festival jardin.webp
     video: ''
     alt: ''
     wide: false
