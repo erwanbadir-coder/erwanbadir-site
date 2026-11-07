@@ -39,6 +39,14 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/insta-postertober-202614.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: ''
+    video: /images/DINAN-web.mp4
+    alt: ''
+    wide: false
   - image: ''
     video: ''
     alt: ''
