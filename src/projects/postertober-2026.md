@@ -47,14 +47,10 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/insta-postertober-2026-CITRONS4.webp
-    video: ''
-    alt: ''
-    wide: false
   - image: /images/insta-postertober-2026-CITRONS8.webp
     video: ''
     alt: ''
-    wide: false
+    wide: true
   - image: /images/Jardin Fest final.webp
     video: ''
     alt: ''
