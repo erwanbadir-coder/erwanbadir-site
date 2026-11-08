@@ -15,6 +15,10 @@ context: |-
   Chaque jour un brief (fictif) différent pour la réalisation d'une affiche.
 approach: ''
 images:
+  - image: /images/Base Affiche broderie.webp
+    video: ''
+    alt: ''
+    wide: false
   - image: /images/insta-postertober-2026-ARLES4.webp
     video: ''
     alt: ''
@@ -24,6 +28,10 @@ images:
     alt: ''
     wide: false
   - image: /images/insta-postertober-2026-CORT métrage4.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/Image Finale.webp
     video: ''
     alt: ''
     wide: false
@@ -63,10 +71,6 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/Image Finale.webp
-    video: ''
-    alt: ''
-    wide: false
   - image: /images/Le Mans Sonore.webp
     video: ''
     alt: ''
@@ -83,7 +87,15 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/Base Affiche broderie.webp
+  - image: ''
+    video: /images/Utopiales-SITU.webp
+    alt: ''
+    wide: true
+  - image: /images/insta-postertober-2026-Plages electro4-1.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: ''
     video: ''
     alt: ''
     wide: false
