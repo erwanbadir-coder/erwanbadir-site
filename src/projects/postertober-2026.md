@@ -71,4 +71,12 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: /images/insta-postertober-festival carnaval.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: ''
+    video: /images/Carnaval-web.mp4
+    alt: ''
+    wide: false
 ---
