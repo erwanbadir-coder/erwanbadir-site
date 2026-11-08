@@ -79,4 +79,12 @@ images:
     video: /images/Carnaval-web.mp4
     alt: ''
     wide: false
+  - image: /images/Base Affiche FEST dMotocultor.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/Base Affiche broderie.webp
+    video: ''
+    alt: ''
+    wide: false
 ---
