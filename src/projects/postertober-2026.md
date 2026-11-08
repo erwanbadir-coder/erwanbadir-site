@@ -19,18 +19,6 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: /images/insta-postertober-2026-ARLES4.webp
-    video: ''
-    alt: ''
-    wide: false
-  - image: /images/insta-postertober-2026-ARLES5.webp
-    video: ''
-    alt: ''
-    wide: false
-  - image: /images/insta-postertober-2026-CORT métrage4.webp
-    video: ''
-    alt: ''
-    wide: false
   - image: /images/Image Finale.webp
     video: ''
     alt: ''
@@ -40,6 +28,18 @@ images:
     alt: ''
     wide: false
   - image: /images/insta-postertober-festival carnaval.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-ARLES4.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-ARLES5.webp
+    video: ''
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-2026-CORT métrage4.webp
     video: ''
     alt: ''
     wide: false
