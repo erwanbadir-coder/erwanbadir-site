@@ -87,8 +87,8 @@ images:
     video: ''
     alt: ''
     wide: false
-  - image: ''
-    video: /images/Utopiales-SITU.webp
+  - image: /images/Utopiales-SITU.webp
+    video: ''
     alt: ''
     wide: true
   - image: /images/insta-postertober-2026-Plages electro4-1.webp
