@@ -35,6 +35,14 @@ images:
     video: ''
     alt: ''
     wide: false
+  - image: ''
+    video: /images/Carnaval-web.mp4
+    alt: ''
+    wide: false
+  - image: /images/insta-postertober-festival carnaval.webp
+    video: ''
+    alt: ''
+    wide: false
   - image: /images/postertober 2026-Fete science5.webp
     video: ''
     alt: ''
@@ -73,14 +81,6 @@ images:
     wide: false
   - image: /images/Le Mans Sonore.webp
     video: ''
-    alt: ''
-    wide: false
-  - image: /images/insta-postertober-festival carnaval.webp
-    video: ''
-    alt: ''
-    wide: false
-  - image: ''
-    video: /images/Carnaval-web.mp4
     alt: ''
     wide: false
   - image: /images/Base Affiche FEST dMotocultor.webp
