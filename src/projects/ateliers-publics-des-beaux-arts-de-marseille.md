@@ -8,7 +8,7 @@ lieu: ''
 cover: /images/ateliers-publics-cover.webp
 cover2: /images/ateliers-publics-2026-cover2.webp
 colorSide: left
-cursorEmoji: 🦄
+cursorEmoji: ✏️
 developed: false
 context: ''
 approach: ''
